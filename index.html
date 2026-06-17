@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daniel Espinoza Aguayo – Jefe de Tecnología & Transformación Digital</title>
+  <meta name="description" content="Líder de Tecnología con 12+ años digitalizando operaciones industriales. Arquitectura de datos, integración ERP, liderazgo de equipos y roadmap tecnológico."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0D1117;--bg2:#161B22;--bg3:#21262D;--border:#30363D;
+      --text:#E6EDF3;--dim:#8B949E;--dim2:#6E7681;
+      --blue:#2563EB;--blue2:#1D4ED8;--blue-glow:rgba(37,99,235,0.15);
+      --green:#10B981;--green2:#059669;--green-glow:rgba(16,185,129,0.12);
+      --yellow:#F59E0B;--red:#EF4444;--purple:#8B5CF6;--cyan:#06B6D4;
+      --mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(13,17,23,0.92);backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);
+      padding:0 2.5rem;height:58px;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .nav-brand{display:flex;flex-direction:column;line-height:1.1}
+    .nav-name{font-size:0.85rem;font-weight:600;color:var(--text)}
+    .nav-role{font-size:0.68rem;color:var(--dim);font-family:var(--mono)}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:var(--dim);text-decoration:none;font-size:0.8rem;letter-spacing:0.02em;transition:color 0.2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{background:var(--blue);color:#fff;padding:0.4rem 1rem;border-radius:5px;font-size:0.78rem;text-decoration:none;transition:background 0.2s}
+    .nav-cta:hover{background:var(--blue2)}
+
+    /* ── HERO ── */
+    #hero{
+      min-height:100vh;display:flex;align-items:center;
+      padding:5rem 2.5rem 3rem;position:relative;overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background:radial-gradient(ellipse 70% 50% at 60% 40%, rgba(37,99,235,0.07) 0%, transparent 70%),
+                 radial-gradient(ellipse 40% 40% at 20% 80%, rgba(16,185,129,0.05) 0%, transparent 60%);
+    }
+    .hero-grid-lines{
+      position:absolute;inset:0;
+      background-image:linear-gradient(rgba(37,99,235,0.035) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(37,99,235,0.035) 1px,transparent 1px);
+      background-size:48px 48px;
+    }
+    .hero-inner{
+      max-width:1060px;width:100%;margin:0 auto;
+      display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center;
+      position:relative;z-index:1;
+    }
+    .hero-left{display:flex;flex-direction:column;gap:1.8rem}
+    .hero-tag{
+      display:inline-flex;align-items:center;gap:0.5rem;
+      background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);
+      border-radius:20px;padding:0.3rem 0.9rem;width:fit-content;
+    }
+    .hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+    .hero-tag span{font-size:0.72rem;color:var(--green);font-family:var(--mono);letter-spacing:0.05em}
+    .hero-headline{display:flex;flex-direction:column;gap:0.3rem}
+    .hero-name{font-size:clamp(2.2rem,4vw,3.2rem);font-weight:700;color:var(--text);line-height:1.05;letter-spacing:-0.025em}
+    .hero-title{font-size:1.1rem;color:var(--dim);font-weight:400;margin-top:0.5rem}
+    .hero-title strong{color:var(--text);font-weight:600}
+    .hero-summary{font-size:0.93rem;color:var(--dim);line-height:1.8;max-width:560px}
+    .hero-summary strong{color:var(--text)}
+    .hero-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .kpi{
+      background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+      padding:1rem;display:flex;flex-direction:column;gap:0.2rem;
+    }
+    .kpi-num{font-family:var(--mono);font-size:1.8rem;font-weight:600;line-height:1}
+    .kpi-num.blue{color:var(--blue)}.kpi-num.green{color:var(--green)}.kpi-num.yellow{color:var(--yellow)}
+    .kpi-label{font-size:0.72rem;color:var(--dim);line-height:1.3}
+    .hero-cta{display:flex;gap:0.8rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.65rem 1.3rem;border-radius:6px;font-size:0.82rem;font-weight:500;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;font-family:var(--sans)}
+    .btn-p{background:var(--blue);color:#fff}.btn-p:hover{background:var(--blue2);transform:translateY(-1px)}
+    .btn-o{background:transparent;color:var(--text);border:1px solid var(--border)}.btn-o:hover{border-color:var(--dim);transform:translateY(-1px)}
+
+    /* Terminal */
+    .terminal{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+    .t-bar{background:var(--bg3);padding:0.65rem 1rem;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid var(--border)}
+    .dot{width:11px;height:11px;border-radius:50%}
+    .dr{background:#FF5F57}.dy{background:#FFBD2E}.dg{background:#28C840}
+    .t-title{margin:0 auto;font-family:var(--mono);font-size:0.68rem;color:var(--dim)}
+    .t-body{padding:1.2rem;font-family:var(--mono);font-size:0.75rem;line-height:1.9;min-height:240px}
+    .tp{color:var(--green)}.tpa{color:var(--blue)}.tcmd{color:var(--text)}
+    .tout{color:var(--dim)}.toa{color:var(--green)}.toy{color:var(--yellow)}.toc{color:var(--cyan)}
+    .cursor{display:inline-block;width:7px;height:0.9em;background:var(--green);vertical-align:text-bottom;animation:blink 1s step-end infinite}
+    @keyframes blink{50%{opacity:0}}
+
+    /* ── SECTION BASE ── */
+    section{padding:5rem 2.5rem}
+    .container{max-width:1060px;margin:0 auto}
+    .s-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:0.6rem}
+    .s-eyebrow{font-family:var(--mono);font-size:0.68rem;color:var(--green);letter-spacing:0.14em;text-transform:uppercase}
+    .s-title{font-size:1.75rem;font-weight:700;color:var(--text);letter-spacing:-0.015em}
+    .s-sub{color:var(--dim);font-size:0.9rem;margin-bottom:2.5rem;max-width:680px;line-height:1.7}
+    .s-line{flex:1;height:1px;background:var(--border)}
+
+    /* ── FIT ── */
+    #fit{background:var(--bg2)}
+    .fit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+    .fit-card{
+      background:var(--bg);border:1px solid var(--border);border-radius:8px;
+      padding:1.4rem;display:flex;flex-direction:column;gap:0.8rem;
+      position:relative;overflow:hidden;transition:border-color 0.2s,transform 0.2s;
+    }
+    .fit-card:hover{border-color:rgba(37,99,235,0.4);transform:translateY(-2px)}
+    .fit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--fc,var(--blue))}
+    .fit-icon{font-size:1.5rem}
+    .fit-req{font-family:var(--mono);font-size:0.62rem;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase}
+    .fit-title{font-size:0.92rem;font-weight:600;color:var(--text);line-height:1.3}
+    .fit-body{font-size:0.8rem;color:var(--dim);line-height:1.65;flex:1}
+    .fit-match{
+      padding:0.5rem 0.7rem;border-radius:4px;
+      background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);
+      font-size:0.75rem;color:var(--green);font-weight:500;
+    }
+    .fit-match::before{content:'✓  '}
+
+    /* ── IMPACT ── */
+    #impact{background:var(--bg)}
+    .impact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem}
+    .ic{
+      background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+      padding:1.4rem;display:flex;flex-direction:column;gap:0.85rem;
+      position:relative;overflow:hidden;transition:border-color 0.2s,transform 0.2s;
+    }
+    .ic:hover{border-color:rgba(37,99,235,0.35);transform:translateY(-2px)}
+    .ic::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--icc,var(--blue))}
+    .ic-top{display:flex;align-items:center;gap:0.8rem}
+    .ic-icon{font-size:1.5rem}
+    .ic-area{font-family:var(--mono);font-size:0.65rem;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase}
+    .ic-title{font-size:0.95rem;font-weight:600;color:var(--text);line-height:1.3}
+    .ic-before{
+      font-size:0.77rem;color:var(--dim);
+      padding:0.5rem 0.7rem;border-radius:4px;
+      background:rgba(239,68,68,0.06);border-left:2px solid rgba(239,68,68,0.4);
+      line-height:1.55;
+    }
+    .ic-before::before{content:'Antes: ';color:rgba(239,68,68,0.8);font-weight:600;font-size:0.7rem}
+    .ic-after{
+      font-size:0.77rem;color:var(--dim);
+      padding:0.5rem 0.7rem;border-radius:4px;
+      background:rgba(16,185,129,0.06);border-left:2px solid rgba(16,185,129,0.4);
+      line-height:1.55;
+    }
+    .ic-after::before{content:'Después: ';color:var(--green);font-weight:600;font-size:0.7rem}
+    .ic-metrics{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:auto}
+    .metric{
+      background:var(--bg3);border:1px solid var(--border);border-radius:5px;
+      padding:0.4rem 0.7rem;text-align:center;flex:1;min-width:80px;
+    }
+    .metric-val{font-family:var(--mono);font-size:1rem;font-weight:600;color:var(--text);line-height:1}
+    .metric-lbl{font-size:0.62rem;color:var(--dim);margin-top:0.15rem;line-height:1.3}
+
+    /* ── PROJECTS ── */
+    #projects{background:var(--bg2)}
+    .filter-bar{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem}
+    .fb{background:var(--bg3);border:1px solid var(--border);color:var(--dim);padding:0.3rem 0.85rem;border-radius:20px;font-size:0.7rem;font-family:var(--mono);cursor:pointer;transition:all 0.2s}
+    .fb:hover,.fb.active{background:var(--blue);border-color:var(--blue);color:#fff}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.1rem}
+    .pc{
+      background:var(--bg);border:1px solid var(--border);border-radius:8px;
+      padding:1.3rem;display:flex;flex-direction:column;gap:0.75rem;
+      position:relative;overflow:hidden;transition:border-color 0.2s,transform 0.2s;
+    }
+    .pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ac,var(--blue));opacity:0;transition:opacity 0.2s}
+    .pc:hover{border-color:rgba(37,99,235,0.35);transform:translateY(-2px)}.pc:hover::before{opacity:1}
+    .pc.hidden{display:none}
+    .pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem}
+    .pc-icon{font-size:1.25rem}
+    .pc-badges{display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap}
+    .badge-infra{font-family:var(--mono);font-size:0.6rem;padding:0.12rem 0.4rem;border-radius:3px;border:1px solid}
+    .bi-gcp{color:#60A5FA;border-color:rgba(96,165,250,0.35);background:rgba(96,165,250,0.06)}
+    .bi-on{color:#FCA5A5;border-color:rgba(252,165,165,0.35);background:rgba(252,165,165,0.06)}
+    .bi-hy{color:#FDE68A;border-color:rgba(253,230,138,0.35);background:rgba(253,230,138,0.06)}
+    .badge-type{font-family:var(--mono);font-size:0.6rem;color:var(--dim);border:1px solid var(--border);border-radius:3px;padding:0.12rem 0.4rem}
+    .pc-name{font-family:var(--mono);font-size:0.88rem;font-weight:600;color:var(--text)}
+    .pc-desc{font-size:0.79rem;color:var(--dim);line-height:1.65;flex:1}
+    .pc-impact-box{
+      border-radius:5px;padding:0.6rem 0.8rem;
+      background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.18);
+    }
+    .pc-impact-label{font-size:0.6rem;font-family:var(--mono);color:var(--green);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.3rem}
+    .pc-metrics-row{display:flex;gap:0.6rem;flex-wrap:wrap}
+    .pm{
+      background:var(--bg3);border-radius:4px;padding:0.3rem 0.6rem;
+      font-family:var(--mono);font-size:0.7rem;color:var(--text);
+      border:1px solid var(--border);white-space:nowrap;
+    }
+    .pm span{color:var(--green);font-weight:600}
+    .pc-tags{display:flex;flex-wrap:wrap;gap:0.35rem}
+    .tag{font-family:var(--mono);font-size:0.6rem;padding:0.1rem 0.4rem;border-radius:3px;background:var(--bg3);color:var(--dim);border:1px solid var(--border)}
+    .tg{color:#60A5FA;border-color:rgba(96,165,250,0.3)}
+    .tn{color:#86EFAC;border-color:rgba(134,239,172,0.3)}
+    .ta{color:#F9A8D4;border-color:rgba(249,168,212,0.3)}
+    .ty{color:#FDE68A;border-color:rgba(253,230,138,0.3)}
+    .tl{color:#FCA5A5;border-color:rgba(252,165,165,0.3)}
+    .ts{color:#C4B5FD;border-color:rgba(196,181,253,0.3)}
+    .tb{color:#67E8F9;border-color:rgba(103,232,249,0.3)}
+    .tr{color:#FCD34D;border-color:rgba(252,211,77,0.3)}
+    .tp2{color:#D8B4FE;border-color:rgba(216,180,254,0.3)}
+
+    /* ── SKILLS ── */
+    #skills{background:var(--bg)}
+    .skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem}
+    .sg-t{font-family:var(--mono);font-size:0.68rem;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.1rem}
+    .sk-row{margin-bottom:1rem}
+    .sk-meta{display:flex;justify-content:space-between;margin-bottom:0.3rem}
+    .sk-name{font-size:0.8rem;color:var(--text)}
+    .sk-pct{font-family:var(--mono);font-size:0.7rem;color:var(--dim)}
+    .sk-bar{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden}
+    .sk-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:2px;width:0;transition:width 1.1s cubic-bezier(.4,0,.2,1)}
+    .cert-list{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+    .cert-item{display:flex;gap:0.8rem;align-items:flex-start;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem}
+    .ci-icon{font-size:1.1rem;flex-shrink:0}
+    .ci-name{font-size:0.82rem;color:var(--text);font-weight:500}
+    .ci-org{font-family:var(--mono);font-size:0.67rem;color:var(--dim)}
+    .leadership-box{
+      background:var(--bg2);border:1px solid rgba(37,99,235,0.3);border-radius:8px;
+      padding:1.5rem;margin-top:2rem;
+    }
+    .lb-title{font-family:var(--mono);font-size:0.68rem;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+    .lb-items{display:flex;flex-direction:column;gap:0.6rem}
+    .lb-item{display:flex;align-items:flex-start;gap:0.7rem;font-size:0.8rem;color:var(--dim)}
+    .lb-item::before{content:'→';color:var(--blue);font-family:var(--mono);flex-shrink:0}
+
+    /* ── CONTACT ── */
+    #contact{background:var(--bg2)}
+    .contact-inner{max-width:560px;margin:0 auto;text-align:center}
+    .contact-inner p{color:var(--dim);font-size:0.92rem;margin-bottom:2rem;line-height:1.75}
+    .contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+    .cl{display:flex;align-items:center;gap:0.5rem;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:0.65rem 1.1rem;text-decoration:none;color:var(--text);font-family:var(--mono);font-size:0.78rem;transition:all 0.2s}
+    .cl:hover{border-color:var(--blue);color:#60A5FA;transform:translateY(-2px)}
+
+    footer{padding:1.4rem 2rem;border-top:1px solid var(--border);text-align:center;font-family:var(--mono);font-size:0.67rem;color:var(--dim)}
+
+    @media(max-width:900px){
+      .hero-inner{grid-template-columns:1fr}.terminal{display:none}
+      .fit-grid{grid-template-columns:1fr 1fr}
+      .skills-layout{grid-template-columns:1fr}
+      .hero-kpis{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(max-width:600px){
+      .fit-grid,.hero-kpis{grid-template-columns:1fr 1fr}
+      .nav-links,.nav-cta{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){.sk-fill{transition:none}.cursor{animation:none}.hero-tag-dot{animation:none}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <span class="nav-name">Daniel Espinoza Aguayo</span>
+    <span class="nav-role">Jefe de Tecnología & Transformación Digital</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#fit">Propuesta de valor</a></li>
+    <li><a href="#impact">Impacto</a></li>
+    <li><a href="#projects">Proyectos</a></li>
+    <li><a href="#skills">Experiencia</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contactar →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">
+        <div class="hero-tag-dot"></div>
+        <span>Disponible para nuevos desafíos</span>
+      </div>
+      <div class="hero-headline">
+        <h1 class="hero-name">Daniel Espinoza<br>Aguayo</h1>
+        <p class="hero-title"><strong>Jefe de Tecnología & Líder de Transformación Digital</strong></p>
+      </div>
+      <p class="hero-summary">
+        12 años liderando la digitalización de operaciones industriales y pesqueras de extremo a extremo: desde planta y flota hasta ERP, integración de datos y arquitectura cloud. Combino <strong>visión estratégica con ejecución técnica directa</strong>, liderando equipos multidisciplinarios y construyendo roadmaps tecnológicos alineados al negocio.
+      </p>
+      <div class="hero-kpis">
+        <div class="kpi"><div class="kpi-num blue">17</div><div class="kpi-label">sistemas en producción</div></div>
+        <div class="kpi"><div class="kpi-num green">12+</div><div class="kpi-label">años de experiencia</div></div>
+        <div class="kpi"><div class="kpi-num yellow">6</div><div class="kpi-label">personas lideradas</div></div>
+      </div>
+      <div class="hero-cta">
+        <a href="#fit" class="btn btn-p">Ver propuesta de valor →</a>
+        <a href="#impact" class="btn btn-o">Impacto logrado</a>
+        <a href="https://linkedin.com/in/daniel-espinoza-aguayo-137408251" target="_blank" class="btn btn-o">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="t-bar">
+        <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
+        <span class="t-title">daniel@cloud — resumen ejecutivo</span>
+      </div>
+      <div class="t-body" id="term-out"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT: propuesta de valor vs el cargo -->
+<section id="fit">
+  <div class="container">
+    <div class="s-header">
+      <span class="s-eyebrow">Propuesta de valor</span>
+      <div class="s-line"></div>
+    </div>
+    <h2 class="s-title">Por qué soy el perfil adecuado</h2>
+    <p class="s-sub">Cada requisito del cargo tiene un proyecto real detrás. No es experiencia teórica — es lo que construí y opero hoy.</p>
+    <div class="fit-grid" id="fit-grid"></div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact">
+  <div class="container">
+    <div class="s-header">
+      <span class="s-eyebrow">Transformación digital</span>
+      <div class="s-line"></div>
+    </div>
+    <h2 class="s-title">Lo que cambió con mis sistemas</h2>
+    <p class="s-sub">Cada iniciativa reemplazó un proceso manual, redujo errores o habilitó decisiones que antes eran imposibles. Aquí el antes y después con indicadores concretos.</p>
+    <div class="impact-grid" id="impact-grid"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="s-header">
+      <span class="s-eyebrow">Portafolio completo</span>
+      <div class="s-line"></div>
+    </div>
+    <h2 class="s-title">17 proyectos en producción</h2>
+    <p class="s-sub">Sistemas propios, integraciones y aplicaciones operacionales — en Google Cloud y On-Premise.</p>
+    <div class="filter-bar">
+      <button class="fb active" data-f="all">Todos (17)</button>
+      <button class="fb" data-f="gcp">☁ Google Cloud</button>
+      <button class="fb" data-f="on">🖥 On-Premise</button>
+      <button class="fb" data-f="sistema">Sistema</button>
+      <button class="fb" data-f="integracion">Integración ERP/API</button>
+      <button class="fb" data-f="aplicacion">Aplicación operacional</button>
+      <button class="fb" data-f="realtime">Tiempo real</button>
+    </div>
+    <div class="projects-grid" id="pg"></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="s-header">
+      <span class="s-eyebrow">Experiencia técnica & liderazgo</span>
+      <div class="s-line"></div>
+    </div>
+    <h2 class="s-title">Stack y capacidades</h2>
+    <p class="s-sub">Base técnica sólida con visión de negocio. Puedo tomar decisiones de arquitectura y también sentarme a programar cuando el equipo lo necesita.</p>
+    <div class="skills-layout">
+      <div>
+        <p class="sg-t">Cloud & Arquitectura</p>
+        <div id="sk-cloud"></div>
+        <p class="sg-t" style="margin-top:2rem">Backend & Datos</p>
+        <div id="sk-back"></div>
+      </div>
+      <div>
+        <p class="sg-t">Frontend & Tiempo real</p>
+        <div id="sk-front"></div>
+        <p class="sg-t" style="margin-top:2rem">Certificaciones</p>
+        <ul class="cert-list">
+          <li class="cert-item"><span class="ci-icon">☁️</span><div><div class="ci-name">Associate Cloud Engineer (en progreso)</div><div class="ci-org">Google Cloud Platform · 2025</div></div></li>
+          <li class="cert-item"><span class="ci-icon">🤖</span><div><div class="ci-name">AI Practitioner Certificate</div><div class="ci-org">IBM · 2025</div></div></li>
+          <li class="cert-item"><span class="ci-icon">🎓</span><div><div class="ci-name">Ingeniería en Computación e Informática</div><div class="ci-org">Universidad · Biobío, Chile</div></div></li>
+        </ul>
+        <div class="leadership-box">
+          <p class="lb-title">Liderazgo de equipos</p>
+          <div class="lb-items">
+            <div class="lb-item">Lideré equipo de 6 personas: desarrolladores, soporte y coordinación TI</div>
+            <div class="lb-item">Definición de roadmap tecnológico anual alineado a dirección</div>
+            <div class="lb-item">Gestión de proyectos simultáneos con metodología ágil adaptada a industria</div>
+            <div class="lb-item">Relacionamiento con gerencias, áreas operativas, proveedores y autoridades</div>
+            <div class="lb-item">Migración Google Workspace para 200+ usuarios con cero fricción operativa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="s-header">
+      <span class="s-eyebrow">Contacto</span>
+      <div class="s-line"></div>
+    </div>
+    <h2 class="s-title">Conversemos</h2>
+    <div class="contact-inner">
+      <p>Disponible para conversar sobre el rol de <strong>Jefe de Tecnología</strong>. Traigo 12 años de experiencia construyendo exactamente lo que este cargo requiere: estrategia, integración, equipos y operación.</p>
+      <div class="contact-links">
+        <a href="mailto:despinozaf@hotmail.com" class="cl"><span>✉</span> despinozaf@hotmail.com</a>
+        <a href="https://linkedin.com/in/daniel-espinoza-aguayo-137408251" target="_blank" class="cl"><span>in</span> LinkedIn</a>
+        <a href="https://github.com/TU_USUARIO" target="_blank" class="cl"><span>{ }</span> GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span style="color:var(--green)">daniel@cloud:~$</span>
+  <span> echo "Biobío, Chile · 17 sistemas en producción · 12 años de transformación digital"</span>
+</footer>
+
+<script>
+// ── TERMINAL ──────────────────────────────────────────────────
+const tlines = [
+  {t:'cmd',v:'whoami --format=executive'},
+  {t:'oa', v:'Daniel Espinoza Aguayo'},
+  {t:'toc',v:'Jefe de Tecnología & Transformación Digital'},
+  {t:'cmd',v:'cat kpis.json'},
+  {t:'out',v:'{'},
+  {t:'toy',v:'  "sistemas_en_produccion": 17,'},
+  {t:'toy',v:'  "anos_experiencia": 12,'},
+  {t:'toy',v:'  "equipo_liderado": 6,'},
+  {t:'toy',v:'  "integraciones_erp": 5,'},
+  {t:'toy',v:'  "cobertura_cloud": "GCP + On-Premise"'},
+  {t:'out',v:'}'},
+  {t:'cmd',v:'gcloud run services list --region=southamerica-west1'},
+  {t:'oa', v:'✓ 3 servicios activos · 99.9% uptime'},
+];
+const tOut=document.getElementById('term-out');
+let ti=0;
+function nl(){
+  if(ti>=tlines.length){tOut.innerHTML+='<span class="cursor"></span>';return}
+  const l=tlines[ti++];
+  let h='';
+  if(l.t==='cmd') h=`<div><span class="tp">daniel</span><span class="tout">@</span><span class="tpa">cloud</span><span class="tout"> $ </span><span class="tcmd">${l.v}</span></div>`;
+  else if(l.t==='oa') h=`<div><span class="toa">${l.v}</span></div>`;
+  else if(l.t==='toy') h=`<div><span class="toy">${l.v}</span></div>`;
+  else if(l.t==='toc') h=`<div><span class="toc">${l.v}</span></div>`;
+  else h=`<div><span class="tout">${l.v}</span></div>`;
+  tOut.innerHTML+=h;
+  setTimeout(nl,l.t==='cmd'?320:65);
+}
+setTimeout(nl,700);
+
+// ── FIT DATA ──────────────────────────────────────────────────
+const fits=[
+  {
+    icon:'⚙️',color:'#2563EB',
+    req:'Integración ERP y sistemas',
+    title:'Integré SAP, BUK, Asisscad, Citynet y Planiwise',
+    body:'Construí una capa de integraciones que conecta el ERP SAP con sistemas propios de planta, sincroniza RRHH con control de acceso y extrae datos de plataformas externas automáticamente.',
+    match:'5 integraciones productivas con ERP/plataformas externas',
+  },
+  {
+    icon:'📐',color:'#10B981',
+    req:'Arquitectura de datos',
+    title:'Diseñé el primer Data Warehouse corporativo en BigQuery',
+    body:'Arquitecté y desplegué el primer DW de la compañía sobre Google BigQuery con pipelines ETL en Python, tablas externas y acceso segmentado por área de negocio.',
+    match:'DW en producción · Analytics disponible para todas las áreas',
+  },
+  {
+    icon:'🗺️',color:'#F59E0B',
+    req:'Roadmap de transformación digital',
+    title:'Llevé la empresa de papel y planillas a 17 sistemas digitales',
+    body:'Diseñé y ejecuté el roadmap tecnológico de Camanchaca durante 12 años: desde el primer sistema on-premise hasta arquitectura cloud-native en GCP con CI/CD automatizado.',
+    match:'0 → 17 sistemas en producción · 100% operaciones digitalizadas',
+  },
+  {
+    icon:'👥',color:'#8B5CF6',
+    req:'Liderazgo de equipos TI',
+    title:'Lideré equipo multidisciplinario de hasta 6 personas',
+    body:'Coordiné desarrolladores, soporte técnico y coordinación TI. Gestioné múltiples proyectos en paralelo con metodologías ágiles adaptadas a la realidad operacional industrial.',
+    match:'6 personas · proyectos en paralelo · entrega continua',
+  },
+  {
+    icon:'🔗',color:'#06B6D4',
+    req:'Desarrollo e integración de sistemas',
+    title:'Desarrollo full-stack con stack moderno en producción real',
+    body:'Construí sistemas completos con Angular, Laravel, Node.js y Python. No solo arquitectura — también código en producción, revisión técnica y mentoría al equipo de desarrollo.',
+    match:'Python + SQL + Angular + Node en 17 proyectos productivos',
+  },
+  {
+    icon:'🛡️',color:'#EF4444',
+    req:'Continuidad operacional',
+    title:'Cero interrupciones en sistemas críticos de planta',
+    body:'Diseñé arquitecturas con alta disponibilidad en Cloud Run y redundancia en sistemas on-premise. Implementé CI/CD con Cloud Build para despliegues sin downtime en horario productivo.',
+    match:'99.9% uptime · despliegues sin interrupción de operación',
+  },
+];
+const fg=document.getElementById('fit-grid');
+fits.forEach(f=>{
+  fg.innerHTML+=`
+    <div class="fit-card" style="--fc:${f.color}">
+      <span class="fit-icon">${f.icon}</span>
+      <span class="fit-req">${f.req}</span>
+      <div class="fit-title">${f.title}</div>
+      <div class="fit-body">${f.body}</div>
+      <div class="fit-match">${f.match}</div>
+    </div>`;
+});
+
+// ── IMPACT DATA ───────────────────────────────────────────────
+const impacts=[
+  {
+    icon:'🛡️',color:'#2563EB',area:'Control de Acceso & Seguridad',
+    title:'De registros manuales a control digital de 1.000+ personas',
+    before:'Registro en papel en portería, sin validación de credenciales en tiempo real. Control de contratistas por llamada telefónica. Sin trazabilidad de accesos.',
+    after:'Sistema con lectura QR valida identidad y autorización en segundos. Pipeline automático sincroniza personal desde BUK y Citynet cada hora. Reportería automática.',
+    metrics:[{v:'1.000+',l:'personas controladas'},{v:'< 3s',l:'tiempo de validación'},{v:'24/7',l:'trazabilidad de acceso'}],
+  },
+  {
+    icon:'🐟',color:'#10B981',area:'Flota Pesquera',
+    title:'De radio y planillas a trazabilidad total de la flota',
+    before:'La flota reportaba por radio y fax. Los zarpes, capturas y descargas se registraban en planillas Excel con horas de retraso. Sin visibilidad en tiempo real.',
+    after:'Cada barco registra zarpe, captura, calidad de materia prima y descarga en tiempo real. Reportería automática a SERNAPESCA. Planificación de planta basada en datos reales.',
+    metrics:[{v:'100%',l:'flota trazada'},{v:'0',l:'reportes manuales a autoridad'},{v:'Real',l:'tiempo de información'}],
+  },
+  {
+    icon:'🏭',color:'#8B5CF6',area:'Producción & ERP',
+    title:'Alta en SAP sin reingreso manual de producción',
+    before:'Los datos de producción se ingresaban primero en papel en planta y luego un operador los reingresaba en SAP. Doble trabajo, errores frecuentes y retrasos de horas.',
+    after:'El sistema SRP captura la producción directamente en planta y la alta en SAP automáticamente, adaptado por tipo de proceso (Conserva, Crustáceos, Harina, Aceite).',
+    metrics:[{v:'0',l:'dobles ingresos'},{v:'4',l:'plantas integradas'},{v:'< 1min',l:'latencia dato→SAP'}],
+  },
+  {
+    icon:'📊',color:'#06B6D4',area:'Datos & Analítica',
+    title:'De Excel a Data Warehouse corporativo en BigQuery',
+    before:'Los datos de pesca, producción y comercialización vivían en planillas Excel descentralizadas. Sin integración, sin historial confiable, sin análisis transversal.',
+    after:'Data Warehouse en BigQuery con ETL automatizados. Todas las áreas acceden a datos integrados y actualizados. Base para análisis de precios, cuotas y operación.',
+    metrics:[{v:'1er',l:'DW de la compañía'},{v:'∞',l:'historial disponible'},{v:'Todas',l:'las áreas con acceso'}],
+  },
+  {
+    icon:'⚙️',color:'#F59E0B',area:'Mantención Industrial',
+    title:'Trazabilidad completa de averías y trabajos de planta',
+    before:'Las solicitudes de mantención llegaban por WhatsApp o llamada. Sin registro, sin priorización, sin historial de equipos. Pérdida de información al rotar personal.',
+    after:'Sistema digital registra cada avería, asigna técnico, hace seguimiento y cierra con evidencia fotográfica en Google Drive. Historial completo por equipo.',
+    metrics:[{v:'100%',l:'OT trazadas'},{v:'0',l:'solicitudes perdidas'},{v:'Drive',l:'evidencia documental'}],
+  },
+  {
+    icon:'🌐',color:'#EF4444',area:'Integraciones & Automatización',
+    title:'5 sistemas externos sincronizados automáticamente',
+    before:'Los datos de RRHH, asistencia y contratistas se sincronizaban manualmente entre sistemas. Proceso que tomaba horas diarias y era propenso a errores y omisiones.',
+    after:'Pipelines automáticos en GCP sincronizan BUK, Asisscad, Citynet, Planiwise y Vortec. Los datos fluyen solos. El equipo TI ya no hace sincronización manual.',
+    metrics:[{v:'5',l:'sistemas integrados'},{v:'Automático',l:'sincronización 24/7'},{v:'0h',l:'trabajo manual diario'}],
+  },
+  {
+    icon:'🚢',color:'#06B6D4',area:'Logística & Descarga',
+    title:'Planificación de planta basada en datos de balanza en vivo',
+    before:'La velocidad de descarga de los barcos se estimaba visualmente. La distribución de materia prima entre plantas se decidía por experiencia, sin datos en tiempo real.',
+    after:'Balanzas conectadas directamente al sistema informan velocidad de descarga en tiempo real. Tracking satelital muestra posición de flota. Planificación basada en datos.',
+    metrics:[{v:'Real',l:'tiempo de balanza'},{v:'GPS',l:'posición de flota'},{v:'Óptima',l:'distribución entre plantas'}],
+  },
+  {
+    icon:'🎛️',color:'#8B5CF6',area:'Control de Proceso & Calidad',
+    title:'Variables de calidad de planta en tiempo real para decisiones de venta',
+    before:'Las variables de control de calidad del proceso se registraban en papel en planta. La información llegaba a gerencia comercial con horas de retraso o no llegaba.',
+    after:'Sistema en tiempo real via Socket.io captura variables de proceso en planta. Gerencia comercial toma decisiones de venta con datos actualizados de la jornada.',
+    metrics:[{v:'< 30s',l:'latencia dato→gerencia'},{v:'0',l:'planillas de papel'},{v:'Online',l:'decisiones de venta'}],
+  },
+];
+const ig=document.getElementById('impact-grid');
+impacts.forEach(im=>{
+  const mHtml=im.metrics.map(m=>`<div class="metric"><div class="metric-val">${m.v}</div><div class="metric-lbl">${m.l}</div></div>`).join('');
+  ig.innerHTML+=`
+    <div class="ic" style="--icc:${im.color}">
+      <div class="ic-top"><span class="ic-icon">${im.icon}</span><span class="ic-area">${im.area}</span></div>
+      <div class="ic-title">${im.title}</div>
+      <div class="ic-before">${im.before}</div>
+      <div class="ic-after">${im.after}</div>
+      <div class="ic-metrics">${mHtml}</div>
+    </div>`;
+});
+
+// ── PROJECTS ──────────────────────────────────────────────────
+const projects=[
+  {
+    icon:'🔐',name:'Api_AccessCitynet',type:'Integración ERP/API',infra:'gcp',ac:'#2563EB',
+    desc:'Pipeline GCP: Job contenerizado en Cloud Run sincroniza estado de contratistas desde Citynet al sistema de control de acceso via Cloud Scheduler.',
+    metrics:[{v:'Horaria',l:'sincronización'},{v:'0',l:'intervención manual'}],
+    tags:[['GCP','tg'],['Python','ty'],['Cloud Run','tg'],['Cloud Scheduler','tg']],filters:['gcp','integracion','python'],
+  },
+  {
+    icon:'📋',name:'Api_PlaniwiseLoadBQ',type:'Integración ERP/API',infra:'hybrid',ac:'#06B6D4',
+    desc:'Integración entre Planiwise (formularios dinámicos en AWS) y BigQuery: job programado extrae datos y los sincroniza en base MySQL interna.',
+    metrics:[{v:'AWS↔GCP',l:'puente de datos'},{v:'Diaria',l:'sincronización'}],
+    tags:[['GCP','tg'],['BigQuery','tb'],['Python','ty'],['MySQL','ts']],filters:['gcp','integracion','python'],
+  },
+  {
+    icon:'🛡️',name:'ControlAccess',type:'Sistema',infra:'gcp',ac:'#2563EB',
+    desc:'Sistema corporativo con lectura QR para validar credenciales e identidad de personal interno y externo. Gestiona autorizaciones y estado del personal.',
+    metrics:[{v:'1.000+',l:'personas'},{v:'< 3s',l:'validación'}],
+    tags:[['GCP','tg'],['Angular','ta'],['Laravel','tl'],['MySQL','ts']],filters:['gcp','sistema','angular'],
+  },
+  {
+    icon:'🎛️',name:'ControlProceso',type:'Sistema',infra:'on',ac:'#F59E0B',
+    desc:'Control de calidad de proceso en planta. Variables determinantes para decisiones de venta, entregadas en tiempo real mediante Socket.io.',
+    metrics:[{v:'< 30s',l:'latencia a gerencia'},{v:'0',l:'planillas papel'}],
+    tags:[['Angular','ta'],['Laravel','tl'],['Socket.io','tr'],['MySQL','ts']],filters:['on','sistema','angular','realtime'],
+  },
+  {
+    icon:'🛰️',name:'CunloganTracker',type:'Integración ERP/API',infra:'gcp',ac:'#10B981',
+    desc:'Integración satelital que rescata en tiempo real la posición de los barcos industriales y la almacena en PostgreSQL en GCP.',
+    metrics:[{v:'100%',l:'flota trazada'},{v:'GPS',l:'tiempo real'}],
+    tags:[['GCP','tg'],['Python','ty'],['PostgreSQL','ts']],filters:['gcp','integracion','python','realtime'],
+  },
+  {
+    icon:'🐟',name:'FishingFleetControl',type:'Sistema',infra:'gcp',ac:'#10B981',
+    desc:'Sistema de flota pesquera: registra zarpes, capturas, calidad de materia prima y descargas. Reportería automática a autoridad marítima (SERNAPESCA).',
+    metrics:[{v:'0',l:'reportes manuales'},{v:'24/7',l:'visibilidad flota'}],
+    tags:[['GCP','tg'],['Angular','ta'],['Laravel','tl'],['MySQL','ts']],filters:['gcp','sistema','angular'],
+  },
+  {
+    icon:'👥',name:'Job_BukAccessControl',type:'Integración ERP/API',infra:'gcp',ac:'#8B5CF6',
+    desc:'Integración BUK → Control de Acceso: sincroniza trabajadores internos automáticamente, eliminando carga manual de datos de RRHH.',
+    metrics:[{v:'Auto',l:'sincronización RRHH'},{v:'0h',l:'carga manual'}],
+    tags:[['GCP','tg'],['Node.js','tn'],['Python','ty'],['MySQL','ts']],filters:['gcp','integracion','python','node'],
+  },
+  {
+    icon:'🔧',name:'MantencionApp',type:'Sistema',infra:'gcp',ac:'#F59E0B',
+    desc:'Gestión de mantención industrial: registro de averías, asignación a técnicos, seguimiento y cierre con evidencia en Google Drive.',
+    metrics:[{v:'100%',l:'OT trazadas'},{v:'Drive',l:'evidencia documental'}],
+    tags:[['GCP','tg'],['Angular','ta'],['Laravel','tl'],['Google Drive','tg']],filters:['gcp','sistema','angular'],
+  },
+  {
+    icon:'🦀',name:'MonitorCrustaceosPersonas',type:'Aplicación operacional',infra:'on',ac:'#EF4444',
+    desc:'Monitor de productividad integrado a BD de planta crustáceos. Calcula en línea los kilos capturados por trabajador para control de rendimiento.',
+    metrics:[{v:'Online',l:'productividad individual'},{v:'Base',l:'para incentivos'}],
+    tags:[['React','ta'],['Node.js','tn'],['SQL Server','ts']],filters:['on','aplicacion','node','realtime'],
+  },
+  {
+    icon:'⚖️',name:'MonitorVelocidadDescarga',type:'Aplicación operacional',infra:'on',ac:'#06B6D4',
+    desc:'Conecta balanzas de pozos de almacenamiento directamente al sistema. Mide velocidad de descarga en tiempo real para planificar distribución entre plantas.',
+    metrics:[{v:'Real',l:'tiempo de balanza'},{v:'Óptima',l:'distribución plantas'}],
+    tags:[['Angular','ta'],['Node.js','tn'],['Socket.io','tr'],['MySQL','ts']],filters:['on','aplicacion','angular','node','realtime'],
+  },
+  {
+    icon:'🚦',name:'SemaforoCongelados',type:'Aplicación operacional',infra:'on',ac:'#10B981',
+    desc:'Estado en tiempo real de los 8 túneles de la planta de congelados: libre, congelando, cargando o bloqueado. Elimina comunicación verbal entre operadores.',
+    metrics:[{v:'8',l:'túneles monitoreados'},{v:'0',l:'llamadas de coordinación'}],
+    tags:[['React','ta'],['Node.js','tn'],['Socket.io','tr'],['MySQL','ts']],filters:['on','aplicacion','node','realtime'],
+  },
+  {
+    icon:'📊',name:'SistemaGestionPesquera',type:'Sistema',infra:'gcp',ac:'#2563EB',
+    desc:'SGP integral para operación norte (Iquique): zarpes, calidad MP, muestras, descargas, planificación semanal de planta y exportación a SERNAPESCA.',
+    metrics:[{v:'100%',l:'op. norte digital'},{v:'Auto',l:'reporte SERNAPESCA'}],
+    tags:[['GCP','tg'],['Angular','ta'],['Laravel','tl'],['BigQuery','tb']],filters:['gcp','sistema','angular'],
+  },
+  {
+    icon:'📺',name:'TableroDigitalConserva',type:'Aplicación operacional',infra:'gcp',ac:'#8B5CF6',
+    desc:'Tablero digital en tiempo real para planta Conserva: estado operativo de pozos de materia prima. Reemplazó pizarras físicas y comunicación verbal.',
+    metrics:[{v:'0',l:'pizarras físicas'},{v:'Real',l:'tiempo de estado'}],
+    tags:[['GCP','tg'],['Angular','ta'],['Node.js','tn'],['Socket.io','tr']],filters:['gcp','aplicacion','angular','node','realtime'],
+  },
+  {
+    icon:'🏭',name:'SistemaRegistroProducción',type:'Sistema',infra:'on',ac:'#EF4444',
+    desc:'Sistema Piso Planta integrado con SAP para alta de producción. Adaptado por proceso (Conserva, Crustáceos, Harina, Aceite). Elimina doble ingreso de datos.',
+    metrics:[{v:'0',l:'dobles ingresos'},{v:'4',l:'plantas integradas'}],
+    tags:[['SAP','tp2'],['PHP','tp2'],['SQL Server','ts']],filters:['on','sistema','integracion'],
+  },
+  {
+    icon:'🎣',name:'ControlCuotasPesqueras',type:'Sistema',infra:'on',ac:'#10B981',
+    desc:'Control de cuotas pesqueras por especie, arte de pesca y macrozona. Estado, asignación y vigencia en tiempo real para cumplimiento regulatorio.',
+    metrics:[{v:'Real',l:'tiempo cuotas'},{v:'100%',l:'cumplimiento regulatorio'}],
+    tags:[['PHP','tp2'],['SQL Server','ts']],filters:['on','sistema'],
+  },
+  {
+    icon:'🍽️',name:'AplicativoCasino',type:'Aplicación operacional',infra:'on',ac:'#F59E0B',
+    desc:'Gestión del casino corporativo: registro de consumos por persona, reportes y facturación por período.',
+    metrics:[{v:'Auto',l:'facturación casino'},{v:'100%',l:'trazabilidad consumo'}],
+    tags:[['PHP','tp2'],['SQL Server','ts']],filters:['on','aplicacion'],
+  },
+  {
+    icon:'🕐',name:'Api_AsistenciaVortec',type:'Integración ERP/API',infra:'on',ac:'#06B6D4',
+    desc:'Integración Python que extrae asistencia diaria desde Vortec para cálculo automático de horas extras de todo el personal.',
+    metrics:[{v:'Diario',l:'extracción auto'},{v:'0h',l:'consolidación manual'}],
+    tags:[['Python','ty'],['SQL Server','ts']],filters:['on','integracion','python'],
+  },
+];
+
+const pg=document.getElementById('pg');
+projects.forEach(p=>{
+  const il=p.infra==='gcp'?'Google Cloud':p.infra==='hybrid'?'GCP + AWS':'On-Premise';
+  const ic=p.infra==='gcp'?'bi-gcp':p.infra==='hybrid'?'bi-hy':'bi-on';
+  const tagsH=p.tags.map(([n,c])=>`<span class="tag ${c}">${n}</span>`).join('');
+  const mH=p.metrics.map(m=>`<div class="pm"><span>${m.v}</span> ${m.l}</div>`).join('');
+  const card=document.createElement('div');
+  card.className='pc';card.dataset.filters=p.filters.join(',');
+  card.style.setProperty('--ac',p.ac);
+  card.innerHTML=`
+    <div class="pc-top">
+      <span class="pc-icon">${p.icon}</span>
+      <div class="pc-badges">
+        <span class="badge-infra ${ic}">${il}</span>
+        <span class="badge-type">${p.type}</span>
+      </div>
+    </div>
+    <div class="pc-name">${p.name}</div>
+    <div class="pc-desc">${p.desc}</div>
+    <div class="pc-impact-box">
+      <div class="pc-impact-label">Impacto medible</div>
+      <div class="pc-metrics-row">${mH}</div>
+    </div>
+    <div class="pc-tags">${tagsH}</div>`;
+  pg.appendChild(card);
+});
+
+document.querySelectorAll('.fb').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.f;
+    document.querySelectorAll('.pc').forEach(c=>{
+      c.classList.toggle('hidden',f!=='all'&&!c.dataset.filters.includes(f));
+    });
+  });
+});
+
+// ── SKILLS ───────────────────────────────────────────────────
+const skCloud=[
+  {n:'Google Cloud (Cloud Run, Build, Armor, SQL)',p:88},
+  {n:'BigQuery / Data Warehouse / ETL',p:83},
+  {n:'Terraform / IaC / CI-CD',p:75},
+  {n:'Arquitectura cloud-native & microservicios',p:82},
+  {n:'Seguridad: WAF, IAM, Secret Manager',p:80},
+];
+const skBack=[
+  {n:'Python (ETL, scripting, integraciones)',p:86},
+  {n:'SQL (Server, MySQL, PostgreSQL)',p:90},
+  {n:'Node.js / Fastify / TypeScript',p:85},
+  {n:'PHP / Laravel',p:84},
+  {n:'Integración ERP / SAP / APIs REST',p:80},
+];
+const skFront=[
+  {n:'Angular 17 (Standalone + PrimeNG)',p:83},
+  {n:'React (apps operacionales de planta)',p:70},
+  {n:'Socket.io (tiempo real industrial)',p:80},
+  {n:'Gestión de proyectos TI (Agile + waterfall)',p:85},
+];
+function rsk(data,id){
+  const el=document.getElementById(id);
+  data.forEach(s=>{
+    el.innerHTML+=`<div class="sk-row"><div class="sk-meta"><span class="sk-name">${s.n}</span><span class="sk-pct">${s.p}%</span></div><div class="sk-bar"><div class="sk-fill" data-p="${s.p}"></div></div></div>`;
+  });
+}
+rsk(skCloud,'sk-cloud');rsk(skBack,'sk-back');rsk(skFront,'sk-front');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.sk-fill').forEach(f=>{f.style.width=f.dataset.p+'%'});
+      obs.disconnect();
+    }
+  });
+},{threshold:0.15});
+const skSec=document.getElementById('skills');
+if(skSec)obs.observe(skSec);
+</script>
+</body>
+</html>
