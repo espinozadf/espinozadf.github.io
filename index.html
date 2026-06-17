@@ -7,7 +7,7 @@
   <meta name="description" content="Líder de Tecnología con 12+ años digitalizando operaciones industriales. Arquitectura de datos, integración ERP, liderazgo de equipos y roadmap tecnológico."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -16,7 +16,7 @@
       --blue:#2563EB;--blue2:#1D4ED8;--blue-glow:rgba(37,99,235,0.15);
       --green:#10B981;--green2:#059669;--green-glow:rgba(16,185,129,0.12);
       --yellow:#F59E0B;--red:#EF4444;--purple:#8B5CF6;--cyan:#06B6D4;
-      --mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif;
+      --mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif;--serif:'Fraunces',Georgia,serif;
     }
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
@@ -87,17 +87,17 @@
     .btn-p{background:var(--blue);color:#fff}.btn-p:hover{background:var(--blue2);transform:translateY(-1px)}
     .btn-o{background:transparent;color:var(--text);border:1px solid var(--border)}.btn-o:hover{border-color:var(--dim);transform:translateY(-1px)}
 
-    /* Terminal */
-    .terminal{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
-    .t-bar{background:var(--bg3);padding:0.65rem 1rem;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid var(--border)}
-    .dot{width:11px;height:11px;border-radius:50%}
-    .dr{background:#FF5F57}.dy{background:#FFBD2E}.dg{background:#28C840}
-    .t-title{margin:0 auto;font-family:var(--mono);font-size:0.68rem;color:var(--dim)}
-    .t-body{padding:1.2rem;font-family:var(--mono);font-size:0.75rem;line-height:1.9;min-height:240px}
-    .tp{color:var(--green)}.tpa{color:var(--blue)}.tcmd{color:var(--text)}
-    .tout{color:var(--dim)}.toa{color:var(--green)}.toy{color:var(--yellow)}.toc{color:var(--cyan)}
-    .cursor{display:inline-block;width:7px;height:0.9em;background:var(--green);vertical-align:text-bottom;animation:blink 1s step-end infinite}
-    @keyframes blink{50%{opacity:0}}
+    /* Briefing card */
+    .briefing{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;display:flex;flex-direction:column;gap:1.1rem;box-shadow:0 20px 60px rgba(0,0,0,0.35)}
+    .bf-head{padding-bottom:0.9rem;border-bottom:1px solid var(--border)}
+    .bf-eyebrow{font-size:0.62rem;font-weight:600;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase}
+    .bf-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--text);margin-top:0.15rem}
+    .bf-row{display:flex;flex-direction:column;gap:0.2rem}
+    .bf-k{font-size:0.62rem;font-weight:600;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase}
+    .bf-v{font-size:0.82rem;color:var(--text);line-height:1.45}
+    .bf-v strong{color:var(--blue)}
+    .bf-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.25rem}
+    .bf-tag{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:4px;padding:0.18rem 0.5rem;font-size:0.68rem;color:var(--green);font-weight:500}
 
     /* ── SECTION BASE ── */
     section{padding:5rem 2.5rem}
@@ -248,7 +248,7 @@
     footer{padding:1.4rem 2rem;border-top:1px solid var(--border);text-align:center;font-family:var(--mono);font-size:0.67rem;color:var(--dim)}
 
     @media(max-width:900px){
-      .hero-inner{grid-template-columns:1fr}.terminal{display:none}
+      .hero-inner{grid-template-columns:1fr}.briefing{display:none}
       .fit-grid{grid-template-columns:1fr 1fr}
       .skills-layout{grid-template-columns:1fr}
       .hero-kpis{grid-template-columns:repeat(3,1fr)}
@@ -257,7 +257,7 @@
       .fit-grid,.hero-kpis{grid-template-columns:1fr 1fr}
       .nav-links,.nav-cta{display:none}
     }
-    @media(prefers-reduced-motion:reduce){.sk-fill{transition:none}.cursor{animation:none}.hero-tag-dot{animation:none}}
+    @media(prefers-reduced-motion:reduce){.sk-fill{transition:none}.hero-tag-dot{animation:none}}
   </style>
 </head>
 <body>
@@ -304,12 +304,26 @@
         <a href="https://linkedin.com/in/daniel-espinoza-aguayo-137408251" target="_blank" class="btn btn-o">LinkedIn ↗</a>
       </div>
     </div>
-    <div class="terminal">
-      <div class="t-bar">
-        <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
-        <span class="t-title">daniel@cloud — resumen ejecutivo</span>
+    <div class="briefing">
+      <div class="bf-head">
+        <div class="bf-eyebrow">Perfil profesional</div>
+        <div class="bf-title">Ficha ejecutiva</div>
       </div>
-      <div class="t-body" id="term-out"></div>
+      <div class="bf-row"><span class="bf-k">Empresa actual</span><span class="bf-v">Camanchaca Pesca Sur S.A. · <strong>Líder de Proyectos TI</strong></span></div>
+      <div class="bf-row"><span class="bf-k">Experiencia</span><span class="bf-v"><strong>12+ años</strong> en desarrollo, integración y transformación digital industrial</span></div>
+      <div class="bf-row"><span class="bf-k">Sistemas construidos</span><span class="bf-v"><strong>17 sistemas</strong> en producción · GCP + On-Premise</span></div>
+      <div class="bf-row"><span class="bf-k">Integración ERP</span><span class="bf-v">SAP, BUK, Asisscad, Citynet, Planiwise — <strong>5 plataformas</strong></span></div>
+      <div class="bf-row">
+        <span class="bf-k">Stack del cargo</span>
+        <div class="bf-tags">
+          <span class="bf-tag">✓ Python</span>
+          <span class="bf-tag">✓ SQL avanzado</span>
+          <span class="bf-tag">✓ ERP (SAP)</span>
+          <span class="bf-tag">✓ Arquitectura datos</span>
+          <span class="bf-tag">✓ Equipo TI</span>
+        </div>
+      </div>
+      <div class="bf-row"><span class="bf-k">Ubicación</span><span class="bf-v">Biobío, Chile</span></div>
     </div>
   </div>
 </section>
@@ -427,38 +441,6 @@
 </footer>
 
 <script>
-// ── TERMINAL ──────────────────────────────────────────────────
-const tlines = [
-  {t:'cmd',v:'whoami --format=executive'},
-  {t:'oa', v:'Daniel Espinoza Aguayo'},
-  {t:'toc',v:'Jefe de Tecnología & Transformación Digital'},
-  {t:'cmd',v:'cat kpis.json'},
-  {t:'out',v:'{'},
-  {t:'toy',v:'  "sistemas_en_produccion": 17,'},
-  {t:'toy',v:'  "anos_experiencia": 12,'},
-  {t:'toy',v:'  "equipo_liderado": 6,'},
-  {t:'toy',v:'  "integraciones_erp": 5,'},
-  {t:'toy',v:'  "cobertura_cloud": "GCP + On-Premise"'},
-  {t:'out',v:'}'},
-  {t:'cmd',v:'gcloud run services list --region=southamerica-west1'},
-  {t:'oa', v:'✓ 3 servicios activos · 99.9% uptime'},
-];
-const tOut=document.getElementById('term-out');
-let ti=0;
-function nl(){
-  if(ti>=tlines.length){tOut.innerHTML+='<span class="cursor"></span>';return}
-  const l=tlines[ti++];
-  let h='';
-  if(l.t==='cmd') h=`<div><span class="tp">daniel</span><span class="tout">@</span><span class="tpa">cloud</span><span class="tout"> $ </span><span class="tcmd">${l.v}</span></div>`;
-  else if(l.t==='oa') h=`<div><span class="toa">${l.v}</span></div>`;
-  else if(l.t==='toy') h=`<div><span class="toy">${l.v}</span></div>`;
-  else if(l.t==='toc') h=`<div><span class="toc">${l.v}</span></div>`;
-  else h=`<div><span class="tout">${l.v}</span></div>`;
-  tOut.innerHTML+=h;
-  setTimeout(nl,l.t==='cmd'?320:65);
-}
-setTimeout(nl,700);
-
 // ── FIT DATA ──────────────────────────────────────────────────
 const fits=[
   {
